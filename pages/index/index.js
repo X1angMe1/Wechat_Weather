@@ -23,7 +23,16 @@ Page({
     nowWeatherPic:'',
     nowNavigationBar:'',
   },
+
   onLoad(){
+    this.getNow();
+  },
+
+  onPullDownRefresh(){
+    this.getNow(()=>wx.stopPullDownRefresh());
+  },
+
+  getNow(callback){
     const self = this
     wx.request({
       url: 'https://test-miniprogram.com/api/weather/now',
@@ -33,7 +42,7 @@ Page({
       header: {
         'content-type': 'application/json'
       },
-      success: function (res) {
+      success: res => {
         let result = res.data.result
         let temp = result.now.temp
         let weather = result.now.weather
@@ -46,7 +55,8 @@ Page({
           frontColor: '#000000',
           backgroundColor: weatherColorMap[weather],
         })
-      }
+      },
+      complete: ()=>{callback && callback()}
     })
   }
 })
