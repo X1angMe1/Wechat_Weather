@@ -3,3 +3,16 @@
   <view class='weather'>{{nowWeather}}</view>
   <image class='weather-bg' src='{{nowWeatherPic}}' mode='scaleToFill'></image>
 </view>
+<view class='timetips'>
+  <image class='timetips-icon' src='/images/time-icon.png'></image>
+  <view class='timetips-text'>未来24小时天气</view>
+</view>
+<scroll-view scroll-x>
+<view class='time'>
+  <view class='time-for' wx:for='{{hourlyTime}}'>
+    <view class='time-clock'>{{item.time}}</view>
+    <image class='time-icon' src='{{item.weather}}'></image>
+    <view class='time-temp'>{{item.temp}}</view>
+  </view>
+</view>
+</scroll-view>
