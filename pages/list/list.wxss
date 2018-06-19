@@ -1,0 +1,29 @@
+.future-days{
+  display: flex;
+  height: 150rpx;
+  align-items: center;
+  margin: 0 40rpx;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.weekday{
+  font-size: 40rpx;
+  height: 56rpx;
+  opacity: 0.8;
+}
+.date{
+  font-size: 25rpx;
+  height: 30rpx;
+  opacity: 0.6;
+}
+.temp{
+  flex-grow: 1;
+  text-align: center;
+  font-size: 40rpx;
+  height: 56rpx;
+  opacity: 0.8;
+}
+.weather-icon{
+  width: 90rpx;
+  height: 90rpx;
+}

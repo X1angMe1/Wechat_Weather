@@ -22,7 +22,9 @@ Page({
     nowWeather: '',
     nowWeatherPic:'',
     nowNavigationBar:'',
-    hourlyTime: []
+    hourlyTime: [],
+    today:'',
+    todayTemp:''
   },
 
   onLoad(){
@@ -44,8 +46,10 @@ Page({
       },
       success: res => {
         let result = res.data.result
+        console.log(result)
         this.setNow(result)
         this.setForecast(result)
+        this.setToday(result)
       },
       complete: ()=>{callback && callback()}
     })
@@ -75,7 +79,23 @@ Page({
         weather: '/images/' + forecast[i].weather + '-icon.png',
         temp: forecast[i].temp + '°'
       })
+      hourlyTime[0].time='现在'
     }
     this.setData({ hourlyTime })
+  },
+
+  setToday(result){
+    let today = new Date()
+    console.log(today)
+    this.setData({
+      today: today.getFullYear() + '-' + today.getMonth() + '-' + today.getDay() + ' 今天',
+      todayTemp: result.today.minTemp + '° - ' + result.today.maxTemp + '°'
+    })
+  },
+
+  showToast(){
+    wx.navigateTo({
+      url: '/pages/list/list',
+    })
   }
 })
